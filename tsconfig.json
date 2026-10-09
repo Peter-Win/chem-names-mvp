@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    // "rootDir": "./",
+    "rootDirs": ["./src", "../charchem2.ts/src"],
+    // "outDir": "./dist/",
+    "module": "CommonJS",
+    "target": "es6",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "types": ["jest", "node"],
+    "paths": {
+      "charchem2/*": ["../charchem2.ts/src/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ]
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}
