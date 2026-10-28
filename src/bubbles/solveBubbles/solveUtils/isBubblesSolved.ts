@@ -18,3 +18,5 @@ export const bubbleNotSolved = ({use, links}: Bubble): boolean => {
   return true;
 }
 
+export const isNestedSolved = (group: Bubble): boolean =>
+  !group?.nested?.find(it => !isBubblesSolved(it));

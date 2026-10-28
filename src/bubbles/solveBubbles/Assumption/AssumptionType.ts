@@ -1,3 +1,4 @@
 export type AssumptionType = 
 "SingleAtom" | "HydrogenCollapse" | "MononuclearHydride" |
-"TemplateGroup" | "ValencyPredictor" | "NodeResolver" | "CountExpand" | "Rollback";
+"TemplateGroup" | "ValencyPredictor" | "NodeResolver" | "CountExplode" | "Rollback" |
+"GroupExplode";

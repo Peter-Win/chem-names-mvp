@@ -1,11 +1,13 @@
 import { Bubble } from "../../../Bubble";
 import { getLinkEnd } from "../../../bubblesBase/getLinkEnd";
+import { isSimpleHydrogen } from "../../solveUtils/isSimpleHydrogen";
 
 export const checkToSingleHydrogenBubble = (bubble: Bubble): Bubble | undefined => {
-  const {use, links} = bubble;
-  if (use.type !== "atom") return undefined;
-  if (use.atom.id !== "H") return undefined;
-  if (use.charge !== undefined || use.mass !== undefined) return undefined;
+  const {links} = bubble;
+  if (!isSimpleHydrogen(bubble)) return undefined;
+  // if (use.type !== "atom") return undefined;
+  // if (use.atom.id !== "H") return undefined;
+  // if (use.charge !== undefined || use.mass !== undefined) return undefined;
   if (links?.length !== 1) return undefined;
   const link = links[0];
   if (link?.use?.type !== "bond") return undefined;

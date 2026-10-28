@@ -1,4 +1,4 @@
-import { Bubble } from "../Bubble";
+import { Bubble, BubbleContent } from "../Bubble";
 import { BubbleLink } from "../BubbleLink";
 import { createBubble } from "./createBubble";
 
@@ -14,11 +14,11 @@ import { createBubble } from "./createBubble";
 //                     |
 //                    item .............> old
 
-export type BubbleContent = Bubble[] | undefined;
-
 export const cloneBubbleContent = (bubble: Bubble): BubbleContent => {
   const dstMap: Record<number, Bubble> = {};
-  const toDst = (src: Bubble): Bubble => dstMap[src.id] ?? src; 
+  const toDst = (src: Bubble): Bubble => {
+    return dstMap[src.id] ?? src; 
+  }
   const result = bubble.nested?.map(({id, use, owner, rollback, links, nested}) => {
     const dstItem: Bubble = createBubble({...use}, undefined, id);
     dstItem.owner = owner;
@@ -26,13 +26,14 @@ export const cloneBubbleContent = (bubble: Bubble): BubbleContent => {
     dstItem.nested = nested;
     dstMap[id] = dstItem;
     return [dstItem, links] as const;
-  }).map(([dstItem, links]) => ({
-    ...dstItem,
-    links: links?.map(({bubbles: [a, b], ...rest}: BubbleLink) => ({
+  }).map(([dstItem, links]) => {
+    // нельзя создавать новый экземпляр пузыря. потому что связи строятся с теми, кто попал в dstMap
+    dstItem.links = links?.map(({bubbles: [a, b], ...rest}: BubbleLink) => ({
       ...rest,
       bubbles: [toDst(a), toDst(b)],
-    })),
-  } satisfies Bubble));
+    }));
+    return dstItem;
+  });
   return result;
 }
 

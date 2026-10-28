@@ -1,7 +1,12 @@
 import { BubbleLink } from "./BubbleLink";
 import { BubbleType } from "./BubbleType";
 
-export type BubbleRollback = () => void;
+export type BubbleContent = Bubble[] | undefined;
+
+export type BubbleRollback = {
+  content: BubbleContent;
+  action: () => void;
+}
 
 export type Bubble = {
   id: number;

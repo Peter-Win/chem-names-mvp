@@ -74,11 +74,11 @@ export const srcTemplatesList: SrcTemplate[] = [
     cases: ["P", "As", "Sb"],
     struct: {
       atoms: [
-        {id: "?", valency: 5}, // 0
-        {id: "O", valency: 2, charge: -1}, // 1
-        {id: "O", valency: 2, charge: -1}, // 2
-        {id: "O", valency: 2, charge: -1}, // 3
-        {id: "O", valency: 2}, // 4
+        {id: "?", valency: 5}, // 0   1 -O
+        {id: "O", valency: 2}, // 1       \
+        {id: "O", valency: 2}, // 2  2 -O--P==O 4
+        {id: "O", valency: 2}, // 3       /0
+        {id: "O", valency: 2}, // 4   3 -O
       ],
       links: [[0,1,1], [0,2,1], [0,3,1], [0,4,2]],
     },

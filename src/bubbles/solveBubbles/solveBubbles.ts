@@ -1,6 +1,7 @@
 import { Bubble } from "../Bubble";
+import { stringifyBubble } from "../bubblesBase/stringifyBubble";
 import { Assumption } from "./Assumption/Assumption";
-import { assumptionWeights } from "./Assumption/assumtpionWeights";
+import { assumptionWeights } from "./Assumption/assumptionWeights";
 import { KnowledgeSource } from "./KnowledgeSource";
 import { allKnowledgeSources } from "./knowledgeSources/allKnowledgeSources";
 import { isBubblesSolved } from "./solveUtils/isBubblesSolved";
@@ -50,6 +51,7 @@ export const solveBubblesExt = ({
     }
     Object.values(cmdByScope).forEach(cmd => {
       cmd.apply();
+      // console.log(cmd.type, ">", stringifyBubble(cmd.scope));
     })
   }
   return isBubblesSolved(root);
